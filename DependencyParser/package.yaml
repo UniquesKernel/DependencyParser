@@ -21,7 +21,11 @@ description:         Please see the README on GitHub at <https://github.com/Uniq
 
 dependencies:
 - base >= 4.7 && < 5
-
+- QuickCheck 
+- hspec 
+- megaparsec 
+- text 
+- containers
 ghc-options:
 - -Wall
 - -Wcompat
@@ -33,8 +37,17 @@ ghc-options:
 - -Wpartial-fields
 - -Wredundant-constraints
 
+flags:
+  tests:
+    description: Enable internal tests
+    manual: true 
+    default: false
+
 library:
   source-dirs: src
+  when:
+    - condition: flag(tests)
+      cpp-options: -DTEST
 
 executables:
   DependencyParser-exe:
