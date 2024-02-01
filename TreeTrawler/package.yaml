@@ -1,0 +1,72 @@
+name:                DependencyParser
+version:             0.1.0.0
+github:              "UniquesKernel/DependencyParser"
+license:             BSD-3-Clause
+author:              "Morten Høgsberg Futtrup Kristensen"
+maintainer:          "morten.h.f.k@gmail.com"
+copyright:           "2024 Morten Høgsberg Futtrup Kristensen"
+
+extra-source-files:
+- README.md
+- CHANGELOG.md
+
+# Metadata used when publishing your package
+# synopsis:            Short description of your package
+# category:            Web
+
+# To avoid duplicated efforts in documentation and dealing with the
+# complications of embedding Haddock markup inside cabal files, it is
+# common to point users to the README.md file.
+description:         Please see the README on GitHub at <https://github.com/UniquesKernel/DependencyParser#readme>
+
+dependencies:
+- base >= 4.7 && < 5
+- QuickCheck 
+- hspec 
+- megaparsec 
+- text 
+- containers
+ghc-options:
+- -Wall
+- -Wcompat
+- -Widentities
+- -Wincomplete-record-updates
+- -Wincomplete-uni-patterns
+- -Wmissing-export-lists
+- -Wmissing-home-modules
+- -Wpartial-fields
+- -Wredundant-constraints
+
+flags:
+  tests:
+    description: Enable internal tests
+    manual: true 
+    default: false
+
+library:
+  source-dirs: src
+  when:
+    - condition: flag(tests)
+      cpp-options: -DTEST
+
+executables:
+  DependencyParser-exe:
+    main:                Main.hs
+    source-dirs:         app
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - DependencyParser
+
+tests:
+  DependencyParser-test:
+    main:                Spec.hs
+    source-dirs:         test
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - DependencyParser
