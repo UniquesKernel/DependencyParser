@@ -22,6 +22,19 @@ import Data.Void
 type TToken = (Int, String)
 type Lexer = Parsec Void String
 
+{- | 
+Processes a stream of strings and returns a stream of TTokens 
+the precedence of "+---", "\---", "|" or "     " (5 empty spaces)
+constitute one level of indentation indicating used to indicate if 
+a dependency in a gradle dependency tree is a transitive, sibling or 
+none related dependency to the dependecy that came before.
+--
+__Examples__ 
+
+>>> parse lexeme "" ["runtimeClasspath", "+--- "repo:name:version1", "|   +--- repo2:name2:version2", "testImplementation"] 
+--  Right [(0, "runtimeClasspath"), (1, "repo:name:version1"), (2, "repo2:name2:version"), (0, "testImplementation")]
+--
+-}
 lexeme :: Lexer [TToken]
 lexeme = do 
   indent <- pIndent 

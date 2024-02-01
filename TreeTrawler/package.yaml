@@ -1,4 +1,4 @@
-name:                DependencyParser
+name:                TreeTrawler
 version:             0.1.0.0
 github:              "UniquesKernel/DependencyParser"
 license:             BSD-3-Clause
@@ -26,6 +26,10 @@ dependencies:
 - megaparsec 
 - text 
 - containers
+- http-conduit
+- xml-conduit
+- bytestring
+- aeson
 ghc-options:
 - -Wall
 - -Wcompat
@@ -58,7 +62,7 @@ executables:
     - -rtsopts
     - -with-rtsopts=-N
     dependencies:
-    - DependencyParser
+    - TreeTrawler
 
 tests:
   DependencyParser-test:
@@ -69,4 +73,4 @@ tests:
     - -rtsopts
     - -with-rtsopts=-N
     dependencies:
-    - DependencyParser
+    - TreeTrawler

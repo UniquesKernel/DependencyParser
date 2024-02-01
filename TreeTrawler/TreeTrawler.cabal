@@ -4,7 +4,7 @@ cabal-version: 2.2
 --
 -- see: https://github.com/sol/hpack
 
-name:           DependencyParser
+name:           TreeTrawler
 version:        0.1.0.0
 description:    Please see the README on GitHub at <https://github.com/UniquesKernel/DependencyParser#readme>
 homepage:       https://github.com/UniquesKernel/DependencyParser#readme
@@ -33,19 +33,23 @@ library
       Lexer.Lexer
       Parser.Parser
   other-modules:
-      Paths_DependencyParser
+      Paths_TreeTrawler
   autogen-modules:
-      Paths_DependencyParser
+      Paths_TreeTrawler
   hs-source-dirs:
       src
   ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wmissing-export-lists -Wmissing-home-modules -Wpartial-fields -Wredundant-constraints
   build-depends:
       QuickCheck
+    , aeson
     , base >=4.7 && <5
+    , bytestring
     , containers
     , hspec
+    , http-conduit
     , megaparsec
     , text
+    , xml-conduit
   default-language: Haskell2010
   if flag(tests)
     cpp-options: -DTEST
@@ -53,20 +57,24 @@ library
 executable DependencyParser-exe
   main-is: Main.hs
   other-modules:
-      Paths_DependencyParser
+      Paths_TreeTrawler
   autogen-modules:
-      Paths_DependencyParser
+      Paths_TreeTrawler
   hs-source-dirs:
       app
   ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wmissing-export-lists -Wmissing-home-modules -Wpartial-fields -Wredundant-constraints -threaded -rtsopts -with-rtsopts=-N
   build-depends:
-      DependencyParser
-    , QuickCheck
+      QuickCheck
+    , TreeTrawler
+    , aeson
     , base >=4.7 && <5
+    , bytestring
     , containers
     , hspec
+    , http-conduit
     , megaparsec
     , text
+    , xml-conduit
   default-language: Haskell2010
 
 test-suite DependencyParser-test
@@ -75,18 +83,22 @@ test-suite DependencyParser-test
   other-modules:
       Lexer.LexerTest
       Parser.ParserTest
-      Paths_DependencyParser
+      Paths_TreeTrawler
   autogen-modules:
-      Paths_DependencyParser
+      Paths_TreeTrawler
   hs-source-dirs:
       test
   ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wmissing-export-lists -Wmissing-home-modules -Wpartial-fields -Wredundant-constraints -threaded -rtsopts -with-rtsopts=-N
   build-depends:
-      DependencyParser
-    , QuickCheck
+      QuickCheck
+    , TreeTrawler
+    , aeson
     , base >=4.7 && <5
+    , bytestring
     , containers
     , hspec
+    , http-conduit
     , megaparsec
     , text
+    , xml-conduit
   default-language: Haskell2010
