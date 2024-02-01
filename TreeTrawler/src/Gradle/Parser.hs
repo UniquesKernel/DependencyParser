@@ -1,11 +1,11 @@
-module Parser.Parser 
+module Gradle.Parser
 ( pDependencyTree
 , showTreeCSV
 , queryDirectDependencies
 , DependencyTree (..)
 ) where
 
-import Lexer.Lexer (TToken)
+import Gradle.Lexer (TToken)
 
 import Text.Megaparsec 
 import Data.Void 

@@ -2,8 +2,8 @@
 module Main (main) where
 
 import Text.Megaparsec 
-import Lexer.Lexer
-import Parser.Parser
+import Gradle.Lexer
+import Gradle.Parser
 
 import Data.List (isPrefixOf)
 

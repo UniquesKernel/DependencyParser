@@ -1,11 +1,11 @@
-module Parser.ParserTest 
+module Gradle.ParserTest 
 ( runParserTest 
 ) where
 
 import Test.Hspec 
 import Text.Megaparsec 
-import Parser.Parser 
-import Lexer.Lexer
+import Gradle.Parser 
+import Gradle.Lexer
 
 newtype TTokenWrapper = TTokenWrapper { unwrapTToken :: TToken }
   deriving (Eq, Show)

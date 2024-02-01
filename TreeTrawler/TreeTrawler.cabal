@@ -30,8 +30,9 @@ flag tests
 
 library
   exposed-modules:
-      Lexer.Lexer
-      Parser.Parser
+      Gradle.Lexer
+      Gradle.Parser
+      Gradle.Sanitiser
   other-modules:
       Paths_TreeTrawler
   autogen-modules:
@@ -81,8 +82,9 @@ test-suite DependencyParser-test
   type: exitcode-stdio-1.0
   main-is: Spec.hs
   other-modules:
-      Lexer.LexerTest
-      Parser.ParserTest
+      Gradle.LexerTest
+      Gradle.ParserTest
+      Gradle.SanitiserTest
       Paths_TreeTrawler
   autogen-modules:
       Paths_TreeTrawler

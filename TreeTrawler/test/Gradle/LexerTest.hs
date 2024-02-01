@@ -1,9 +1,9 @@
-module Lexer.LexerTest 
+module Gradle.LexerTest 
 ( runLexerTest
 ) where
 
 import Test.Hspec
-import Lexer.Lexer 
+import Gradle.Lexer 
 import Text.Megaparsec
 import Test.QuickCheck
 
