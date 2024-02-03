@@ -30,6 +30,8 @@ dependencies:
 - xml-conduit
 - bytestring
 - aeson
+- vector 
+- cassava
 ghc-options:
 - -Wall
 - -Wcompat

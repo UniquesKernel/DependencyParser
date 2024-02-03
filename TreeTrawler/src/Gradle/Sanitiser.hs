@@ -57,6 +57,6 @@ sanitiseInput kws (x:xs)
   | otherwise = sanitiseInput kws xs
 
 
--- | currently Untests as the function may change soon
+-- | Currently Untested as the function may change soon
 filterNoDependecy :: [[String]] -> [[String]] 
 filterNoDependecy = map $ filter (/= "No dependencies")
