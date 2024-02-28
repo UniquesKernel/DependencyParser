@@ -40,7 +40,7 @@ pIndent = do
   leadingIndent <- sum <$> many pSpaceIndent
   indent <- sum <$> many (pPipe <|> pPlus <|> pBackslash)
  
-  return $ indent + leadingIndent
+  return $ indent + leadingIndent + 1
 
 pSpaceIndent :: Lexer Int
 pSpaceIndent = do

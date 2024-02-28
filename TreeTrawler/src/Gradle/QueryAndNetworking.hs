@@ -23,6 +23,7 @@ import Network.HTTP.Simple
 import Data.Csv hiding ((.:))
 import qualified Data.Vector as V 
 import qualified Data.ByteString.Lazy as BL
+import Data.Maybe (listToMaybe)
 
 newtype MavenResponse = MavenResponse
   { response :: ResponseBody
@@ -82,8 +83,8 @@ extractGAV = splitOn' ':'
         artifactId = takeWhile (/= splitChar) artifactIdAndVersion :: String
         vers = drop (length artifactId + 1) artifactIdAndVersion :: String
 
-extractLatestVersion :: MavenResponse -> String 
-extractLatestVersion = version . head . docs . response
+extractLatestVersion :: MavenResponse -> String
+extractLatestVersion mavenResponse = maybe "No version available" version (listToMaybe $ docs $ response mavenResponse)
 
 toNameTree :: DependencyTree -> String
 toNameTree (DependencyTree name _ _) = name
@@ -113,6 +114,7 @@ getLatestVersion (VersionTree gav _ lvl subDeps) = do
       Left _ -> do 
         return $ VersionTree gav "Error" lvl updatedSubDeps :: IO VersionTree 
       Right _ -> do
+        
         let newestVersion = either show extractLatestVersion jsonResponse :: String
         let updatedTree = VersionTree gav newestVersion lvl updatedSubDeps :: VersionTree
         return updatedTree :: IO VersionTree
